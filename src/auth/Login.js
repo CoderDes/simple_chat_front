@@ -1,13 +1,14 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, ErrorMessage } from "formik";
 
 import ValidatorFactory from "../util/ValidatorFactory";
+import { AuthWrapper, Form, Field, Button } from "./styles.js";
 
 const emailValidator = ValidatorFactory.getValidator("email");
 const passwordValidator = ValidatorFactory.getValidator("password");
 
 const login = props => (
-  <div>
+  <AuthWrapper>
     <h1>Login</h1>
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -37,13 +38,13 @@ const login = props => (
           <ErrorMessage name="email" component="div" />
           <Field type="password" name="password" />
           <ErrorMessage name="password" component="div" />
-          <button type="submit" disabled={isSubmitting}>
+          <Button type="submit" disabled={isSubmitting}>
             Submit
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>
-  </div>
+  </AuthWrapper>
 );
 
 export default login;

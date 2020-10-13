@@ -6,9 +6,9 @@ export default class Auth extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Login />
-      </div>
+      </React.Fragment>
     );
   }
 }

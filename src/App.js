@@ -1,5 +1,6 @@
 import React from "react";
 import Auth from "./auth/Auth";
+import "./App.css";
 
 function App() {
   return (
