@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { validate } from "./validation.js";
 import { Form, Field, Button } from "./styles.js";
 
-const Login = props => {
+const Register = props => {
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -29,7 +29,7 @@ const Login = props => {
 
       try {
         const response = await fetch(
-          "http://localhost:3001/api/auth/login",
+          "http://localhost:3001/api/users/register",
           options,
         );
         const text = await response.text();
@@ -64,4 +64,4 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default Register;
