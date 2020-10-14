@@ -1,6 +1,6 @@
 class Validator {
   validate(input) {
-    if (input === null) {
+    if (input === "") {
       return false;
     }
     return true;
