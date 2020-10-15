@@ -11,35 +11,7 @@ const Register = props => {
       password: "",
     },
     validate,
-    onSubmit: async values => {
-      const { email, password } = values;
-      const options = {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      };
-
-      try {
-        const response = await fetch(
-          "http://localhost:3001/api/users/register",
-          options,
-        );
-        const text = await response.text();
-        console.log("RESPONSE ", response);
-        console.log("TEXT ", text);
-      } catch (e) {
-        alert("ERROR");
-        console.error(e);
-      }
-    },
+    onSubmit: props.handleSubmit,
   });
   return (
     <React.Fragment>

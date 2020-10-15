@@ -1,16 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { AuthWrapper } from "./styles.js";
 import Login from "./Login";
 import Register from "./Register";
 
-export const Auth = props => (
+const Auth = props => (
   <AuthWrapper>
-    <h1>Login</h1>
-    <Login />
-    <h2>Registration</h2>
-    <Register />
+    {props.isLoginPage ? (
+      <React.Fragment>
+        <h1>Login</h1>
+        <Login handleSubmit={props.handleLogin} />
+      </React.Fragment>
+    ) : (
+      <React.Fragment>
+        <h1>Registration</h1>
+        <Register handleSubmit={props.handleRegister} />
+      </React.Fragment>
+    )}
+    <button onClick={props.toggleLoginRegister}>
+      Go to {props.isLoginPage ? "registration" : "login"}
+    </button>
   </AuthWrapper>
 );
-  }
-}
+
+export default Auth;
