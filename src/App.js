@@ -32,10 +32,7 @@ class App extends Component {
     };
 
     try {
-      const authResponse = await fetch(
-        "http://localhost:3001/api/auth/login",
-        options,
-      );
+      const authResponse = await fetch("/api/auth/login", options);
       const authData = await authResponse.json();
       const { _id } = authData;
 
@@ -66,10 +63,7 @@ class App extends Component {
     };
 
     try {
-      const response = await fetch(
-        "http://localhost:3001/api/users/register",
-        options,
-      );
+      const response = await fetch("/api/users/register", options);
       const result = await response.json();
       console.log("Registration result", result);
     } catch (e) {
@@ -85,6 +79,15 @@ class App extends Component {
       return { isLoginPage: !prevState.isLoginPage };
     });
   };
+
+  checkSession = () => {
+    // TODO: check if session exist
+    // fetch();
+  };
+
+  componentDidMount() {
+    this.checkSession();
+  }
 
   render() {
     return (

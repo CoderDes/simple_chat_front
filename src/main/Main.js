@@ -15,13 +15,11 @@ export default class Main extends Component {
   async componentDidMount() {
     console.log("MAIN DID MOUNT");
     // TODO: http request for get all messages
-    const userById = await fetch(
-      `http://localhost:3001/api/users/${this.props.userId}`,
-    );
+    const userById = await fetch(`/api/users/${this.props.userId}`);
     const { email } = userById;
     console.log("EMAIL", email);
 
-    const allMessages = await fetch("http://localhost:3001/api/messages/all");
+    const allMessages = await fetch("/api/messages/all");
     console.log("allMessages", allMessages);
   }
 
