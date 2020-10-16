@@ -80,7 +80,7 @@ class App extends Component {
   };
 
   checkSession = async () => {
-    const response = await fetch("/api/users/check-session");
+    const response = await fetch("/api/auth/check-session");
     const { _id } = await response.json();
 
     return _id;
