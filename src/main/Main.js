@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import MessageList from "./messages/MessageList";
+import MessagePost from "./messages/MessagePost";
 
 export default class Main extends Component {
   state = {
@@ -13,25 +14,24 @@ export default class Main extends Component {
   }
 
   async componentDidMount() {
-    console.log("MAIN DID MOUNT");
-    // TODO: http request for get all messages
-    const userById = await fetch(`/api/users/${this.props.userId}`);
-    const { email } = userById;
-    console.log("EMAIL", email);
+    const userByIdResponse = await fetch(`/api/users/${this.props.userId}`);
+    const { email } = await userByIdResponse.json();
 
-    const allMessages = await fetch("/api/messages/all");
-    console.log("allMessages", allMessages);
+    const allMessagesResponse = await fetch("/api/messages/all");
+    const allMessages = await allMessagesResponse.json();
+
+    this.setState({
+      userName: email,
+      allMessages,
+    });
   }
 
   render() {
     return (
       <article>
-        <h1>Hi, {this.props.userName}</h1>
-        <MessageList />
-        <form>
-          <textarea></textarea>
-          <button>Submit</button>
-        </form>
+        <h1>Hi, {this.state.userName}</h1>
+        <MessageList messages={this.state.allMessages} />
+        <MessagePost />
       </article>
     );
   }

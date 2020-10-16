@@ -65,7 +65,6 @@ class App extends Component {
     try {
       const response = await fetch("/api/users/register", options);
       const result = await response.json();
-      console.log("Registration result", result);
     } catch (e) {
       alert("ERROR");
       console.error(e);
@@ -80,13 +79,20 @@ class App extends Component {
     });
   };
 
-  checkSession = () => {
-    // TODO: check if session exist
-    // fetch();
+  checkSession = async () => {
+    const response = await fetch("/api/users/check-session");
+    const { _id } = await response.json();
+
+    return _id;
   };
 
-  componentDidMount() {
-    this.checkSession();
+  async componentDidMount() {
+    const _id = await this.checkSession();
+
+    this.setState({
+      isAuthorized: true,
+      userId: _id,
+    });
   }
 
   render() {
